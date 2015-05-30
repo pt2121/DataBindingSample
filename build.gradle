@@ -7,7 +7,6 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
         classpath group: 'com.android.databinding', name: 'dataBinder', version: '1.0-rc0'
-        //classpath group: 'android-tools', name: 'com.android.databinding.dataBinder', version: '1.0-rc0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
