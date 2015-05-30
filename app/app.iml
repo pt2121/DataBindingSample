@@ -26,9 +26,9 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
-    <output-test url="file://$MODULE_DIR$/build/intermediates/classes/androidTest/debug" />
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/build/retrolambda/debug" />
+    <output-test url="file://$MODULE_DIR$/build/retrolambda/debugAndroidTest" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/build/data-binding-info/debug" isTestSource="false" generated="true" />
@@ -89,6 +89,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/layout-info" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/retrolambda" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 22, MNC preview Platform" jdkType="Android SDK" />
@@ -107,8 +108,8 @@
     <orderEntry type="library" exported="" name="guava-17.0" level="project" />
     <orderEntry type="library" exported="" name="commons-codec-1.10" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="compiler-1.0-rc0" level="project" />
     <orderEntry type="library" exported="" name="antlr4-annotations-4.4" level="project" />
+    <orderEntry type="library" exported="" name="compiler-1.0-rc0" level="project" />
     <orderEntry type="library" exported="" name="library-1.0-rc0" level="project" />
     <orderEntry type="library" exported="" name="ST4-4.0.8" level="project" />
   </component>
