@@ -7,13 +7,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.android.databinding'
 
 android {
-    compileSdkVersion 'android-MNC'
+    compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "com.prt2121.databinding"
-        minSdkVersion 'MNC'
-        targetSdkVersion 'MNC'
+        minSdkVersion 14
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -23,6 +23,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
 // uncomment this if you want to use Java 8
 //    compileOptions {
 //        sourceCompatibility JavaVersion.VERSION_1_8
