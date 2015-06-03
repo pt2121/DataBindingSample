@@ -1,13 +1,9 @@
 package com.prt2121.rx.ui;
 
 import com.prt2121.rx.R;
-import com.prt2121.rx.data.api.GitHubService;
-import com.prt2121.rx.data.api.Order;
-import com.prt2121.rx.data.api.SearchQuery;
-import com.prt2121.rx.data.api.Sort;
+import com.prt2121.rx.data.DataLayer;
 import com.prt2121.rx.data.api.model.Item;
 import com.prt2121.rx.databinding.FragmentRepositoryBinding;
-import com.prt2121.rx.ui.trending.TrendingTimespan;
 import com.prt2121.rx.viewmodel.RepositoryViewModel;
 
 import android.databinding.DataBindingUtil;
@@ -18,12 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import retrofit.RestAdapter;
+import rx.Observable;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import rx.Subscription;
 
 public class RepositoryFragment extends Fragment {
+
+    private RepositoryViewModel mRepositoryViewModel;
+
+    public Subscription mSubscription;
 
     public static RepositoryFragment newInstance() {
         return new RepositoryFragment();
@@ -41,53 +40,35 @@ public class RepositoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-
         FragmentRepositoryBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_repository);
-        final RepositoryViewModel repositoryViewModel = new RepositoryViewModel();
-        binding.setRepositoryViewModel(repositoryViewModel);
-
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("https://api.github.com")
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
-        GitHubService gitHubService = provideGitHubService(restAdapter);
-        SearchQuery trendingQuery = new SearchQuery.Builder()
-                .createdSince(TrendingTimespan.WEEK.createdSince())
-                .build();
-        gitHubService.repositories(trendingQuery, Sort.STARS, Order.DESC)
-                .doOnNext(repositoriesResponse -> Log.d(RepositoryFragment.class.getSimpleName(), "" + repositoriesResponse.items.size()))
-                .map(repositoriesResponse -> repositoriesResponse.items.get(0))
-                .first()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Item>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e(RepositoryFragment.class.getSimpleName(),
-                                "Failed to get trending repositories " + e.getLocalizedMessage());
-                    }
-
-                    @Override
-                    public void onNext(Item repository) {
-                        Log.d("TAG", "repository " + repository);
-                        repositoryViewModel.setRepository(repository);
-                    }
-                });
-
+        mRepositoryViewModel = new RepositoryViewModel();
+        binding.setRepositoryViewModel(mRepositoryViewModel);
         return inflater.inflate(R.layout.fragment_repository, container, false);
-    }
-
-    GitHubService provideGitHubService(RestAdapter restAdapter) {
-        return restAdapter.create(GitHubService.class);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Observable<Item> observable = DataLayer
+                .getGitHubRepositorySearch(DataLayer.getGitHubService(DataLayer.getRestAdapter()));
+
+        mSubscription = observable.subscribe(new Subscriber<Item>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(RepositoryFragment.class.getSimpleName(),
+                        "Failed to get trending repositories " + e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onNext(Item repository) {
+                Log.d("TAG", "repository " + repository);
+                mRepositoryViewModel.setRepository(repository);
+            }
+        });
     }
 
     @Override
@@ -103,6 +84,7 @@ public class RepositoryFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mSubscription.unsubscribe();
     }
 
     @Override
