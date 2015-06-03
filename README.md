@@ -5,6 +5,8 @@ The app module is a very basic data binding sample.
 
 The mvvm module shows data binding with MVVM pattern.
 
+WIP : Rx module
+
 More info: 
 
 * [Android Data Binding](https://developer.android.com/tools/data-binding/guide.html)
