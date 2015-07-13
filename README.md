@@ -5,7 +5,7 @@ The app module is a very basic data binding sample.
 
 The mvvm module shows data binding with MVVM pattern.
 
-WIP : Rx module
+~~WIP : Rx module~~ Due to breaking API changes in RxAndroid, let's ignore this module :P
 
 More info: 
 
