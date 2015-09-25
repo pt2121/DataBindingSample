@@ -43,15 +43,18 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.8</last-edited>
+          <last-edited>Android API 22 Platform</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.32035053" />
               </list>
             </option>
           </splitter-proportions>
