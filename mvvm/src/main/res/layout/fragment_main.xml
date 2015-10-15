@@ -4,8 +4,12 @@
     <data>
 
         <variable
-            name="userViewModel"
-            type="com.prt2121.mvvm.viewmodel.UserViewModel" />
+            name="mainViewModel"
+            type="com.prt2121.mvvm.viewmodel.MainViewModel" />
+
+        <variable
+            name="mainCommand"
+            type="com.prt2121.mvvm.viewmodel.MainCommand" />
 
     </data>
 
@@ -19,12 +23,19 @@
             style="@android:style/TextAppearance.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{userViewModel.user.name}" />
+            android:text="@{mainViewModel.user.name}" />
 
         <TextView
             style="@android:style/TextAppearance.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{userViewModel.user.address}" />
+            android:text="@{mainViewModel.user.address}" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{mainCommand.updateUser}"
+            android:text="@string/button_label" />
     </LinearLayout>
 </layout>

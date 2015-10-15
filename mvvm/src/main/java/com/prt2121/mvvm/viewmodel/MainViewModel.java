@@ -9,7 +9,7 @@ import android.databinding.Bindable;
 /**
  * Created by pt2121 on 6/1/15.
  */
-public class UserViewModel extends BaseObservable {
+public class MainViewModel extends BaseObservable {
 
     private User user;
 
