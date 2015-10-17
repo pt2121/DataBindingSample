@@ -37,23 +37,10 @@ public class MainActivityFragment extends Fragment {
         binding.setMainViewModel(mainViewModel);
         binding.setMainCommand(mainCommand);
 
-        // Let's say we get this somehow
         User user = new User();
         user.setName("Prat");
         user.setAddress("123 Main St");
         mainViewModel.setUser(user);
-
-        // Maybe get another user from a server...
-//        final Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                User phil = new User();
-//                phil.setName("Phil");
-//                phil.setAddress("777 Broad St");
-//                mainViewModel.setUser(phil);
-//            }
-//        }, 4000);
 
         return inflater.inflate(R.layout.fragment_main, container, false);
     }

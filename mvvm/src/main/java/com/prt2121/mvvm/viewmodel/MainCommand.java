@@ -15,7 +15,11 @@ public class MainCommand {
         mViewModel = viewModel;
     }
 
-    public void updateUser(View view) {
+    public void onButtonClick(View view) {
+        updateUser();
+    }
+
+    private void updateUser() {
         User phil = new User();
         phil.setName("Phil");
         phil.setAddress("777 Broad St");
